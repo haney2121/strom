@@ -1,0 +1,33 @@
+enum Permission{
+  ADMIN
+  USER
+  CREATOR
+  UPDATER
+  DELETE
+  PERMISSIONUPDATER
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission]
+}
+
+type Project {
+ id: ID! @unique 
+ name: String!
+ description: String!
+ status: String!
+ isComplete: Boolean!
+ #owners: [User]
+ deadline: DateTime
+ delivery: DateTime
+ #creator: User!
+ history: [String]
+ createdAt: DateTime!
+ updatedAt: DateTime!
+}

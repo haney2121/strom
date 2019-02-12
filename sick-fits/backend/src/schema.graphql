@@ -1,0 +1,37 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  createProject(
+    name: String
+    description: String
+    status: String
+    isComplete: Boolean
+    delivery: DateTime
+    deadline: DateTime
+  ): Project!
+  updateProject(
+    id: ID!
+    name: String
+    description: String
+    status: String
+    isComplete: Boolean
+    delivery: DateTime
+    deadline: DateTime
+  ): Project!
+  deleteProject(id: ID!): Project
+  signup(email: String!, password: String!, name: String!): User!
+  signin(email: String!, password: String!): User!
+}
+
+type Query {
+  projects(
+    where: ProjectWhereInput
+    orderBy: ProjectOrderByInput
+    skip: Int
+    first: Int
+  ): [Project]!
+  project(where: ProjectWhereUniqueInput!): Project
+  projectsConnection(where: ProjectWhereInput): ProjectConnection!
+  users: [User]!
+  me: User
+}
