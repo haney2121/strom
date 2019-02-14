@@ -4,6 +4,7 @@ import styled, { ThemeProvider, injectGlobal } from "styled-components";
 import Header from "./Header/Header";
 import Meta from "./Header/Meta";
 import Overview from "./Overview/Overview";
+import PleaseSignIn from "../components/PleaseSignIn";
 
 const theme = {
   blue: "#007fcb",
@@ -15,6 +16,7 @@ const theme = {
     "linear-gradient(to bottom right, rgba(204, 61, 190, 1) 0%, rgba(119, 42, 219, 1) 100%)",
   lightgrey: "#E1E1E1",
   offWhite: "rgba(255,255,255,0.5)",
+  offGrey: "rgba(0,0,0,0.1)",
   maxWidth: "80%",
   bs: "0 2px 2px rgba(0,0,0,0.1)"
 };
@@ -62,8 +64,10 @@ class Page extends Component {
         <StyledContainer>
           <Meta />
           <Header />
-          <Overview />
-          <InnerContainer>{this.props.children}</InnerContainer>
+          <PleaseSignIn>
+            <Overview />
+            <InnerContainer>{this.props.children}</InnerContainer>
+          </PleaseSignIn>
         </StyledContainer>
       </ThemeProvider>
     );
@@ -71,3 +75,4 @@ class Page extends Component {
 }
 
 export default Page;
+export { InnerContainer };

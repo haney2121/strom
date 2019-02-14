@@ -14,7 +14,10 @@ class Project extends Component {
       <ItemStyles>
         {project.image && <img src={project.image} alt={project.title} />}
         <Title>
-          <Link href={{ pathname: "/project", query: { id: project.id } }}>
+          <Link
+            as={`/projects/${project.id}`}
+            href={{ pathname: "/project", query: { id: project.id } }}
+          >
             <a>{project.name}</a>
           </Link>
         </Title>
