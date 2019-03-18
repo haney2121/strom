@@ -36,7 +36,9 @@ class DeleteProject extends Component {
           <button
             onClick={() => {
               if (confirm("Are you sure you want to delete this project?")) {
-                deleteProject();
+                deleteProject().catch(err => {
+                  alert(err.message);
+                });
               }
             }}
           >

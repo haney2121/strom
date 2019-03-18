@@ -45,8 +45,19 @@ const Mutations = {
   async deleteProject(parent, args, ctx, info) {
     const where = { id: args.id };
     //find the project
-    const project = await ctx.db.query.project({ where }, `{id name}`);
+    const project = await ctx.db.query.project(
+      { where },
+      `{id name createdBy {id}}`
+    );
     //owner of project/permissions
+    const ownsProject = project.createdBy.id === ctx.request.userId;
+    const hasPermissions = ctx.request.user.permissions.some(permission =>
+      ["ADMIN", "DELETE"].includes(permission)
+    );
+    if (ownsProject || hasPermissions) {
+    } else {
+      throw new Error("You are not allowed to delete that!");
+    }
     //delete project
     return ctx.db.mutation.deleteProject({ where }, info);
   },
